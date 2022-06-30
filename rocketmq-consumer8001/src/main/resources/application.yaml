@@ -1,0 +1,15 @@
+server:
+  port: 8001
+  tomcat:
+    uri-encoding: UTF-8
+  servlet:
+    encoding: # 设置编码 CharacterEncodingFilter
+      force: true
+      enabled: true
+      charset: utf-8
+    context-path: /consumer
+
+rocketmq:
+  name-server: 192.168.5.128:9876
+  producer:
+    group: my-consumer-group
