@@ -1,5 +1,6 @@
 package com.guava3s.controller;
 
+import com.guava3s.bean.TestEntity;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.rocketmq.spring.annotation.RocketMQMessageListener;
 import org.apache.rocketmq.spring.core.RocketMQListener;
@@ -17,13 +18,12 @@ import java.util.concurrent.atomic.AtomicInteger;
 @Slf4j
 @Component
 @RocketMQMessageListener(topic = "first-topic", consumerGroup = "my-consumer-group")
-public class ConsumerController implements RocketMQListener<String> {
+public class ConsumerController implements RocketMQListener<TestEntity> {
 
     private AtomicInteger count = new AtomicInteger(0);
 
     @Override
-    public void onMessage(String message) {
-        int i = count.incrementAndGet();
-        log.info("8001号机-第{}个需要处理的消息是:{}", i, message);
+    public void onMessage(TestEntity message) {
+        log.info("消费的数据为：{}", message);
     }
 }
